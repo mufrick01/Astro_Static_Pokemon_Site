@@ -1,0 +1,50 @@
+---
+import { matchPathname } from "astro/assets/utils";
+
+const links = [
+    { href: "/", text: "Listado" },
+    { href: "/pokemons/1", text: "Paginado" },
+    { href: "/favorites/", text: "Favoritos" },
+];
+
+const currentPath = Astro.url.pathname;
+console.log(currentPath);
+---
+
+<nav class="shadow bg-slate-800">
+    <div
+        class="container flex items-center justify-center p-6 mx-auto text-slate-200 capitalize"
+    >
+        <!-- {
+            links.map(({ href, text }) => (
+                <a
+                    {href}
+                    class:list={[
+                        "mx-3",
+                        { "border-b-2 border-blue-500": href === currentPath },
+                    ]}
+                >
+                    {text}
+                </a>
+            ))
+        } -->
+
+        {
+            links.map(({ href, text }) => (
+                <div>
+                    <a {href} class="mx-3">
+                        {text}
+                    </a>
+                    {currentPath === href ? (
+                        <div
+                            transition:name="menu-line"
+                            class="border-b-2 border-blue-500"
+                        />
+                    ) : (
+                        <div class="border-b-2 border-transparent" />
+                    )}
+                </div>
+            ))
+        }
+    </div>
+</nav>

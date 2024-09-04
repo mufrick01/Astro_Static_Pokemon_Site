@@ -1,0 +1,41 @@
+---
+import type { GetStaticPaths } from "astro";
+import type { PokemonListResponse } from "@interfaces/pokemon-list.response";
+import MainLayout from "@layout/MainLayout.astro";
+import PokemonCard from "@components/pokemons/PokemonCard.astro";
+import Title from "@components/shared/Title.astro";
+export const getStaticPaths = ( async () => {
+    
+    const resp = await fetch("https://pokeapi.co/api/v2/pokemon?limit=151");
+    const {results} = (await resp.json()) as PokemonListResponse;
+
+    return results.map(({name,url})=>{
+
+        const id = url.split('/').at(-2)
+
+        return{
+                params:{id},
+                props:{name,url}
+        }
+    })
+
+;
+}) satisfies GetStaticPaths;
+
+const {id} = Astro.params;
+const {url,name} = Astro.props;
+
+const audioSource = `https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/${id}.ogg`;
+---
+
+ <MainLayout title={name}>
+    <a href="/" class="text-blue-400 hover:underline " >go home</a>
+    <Title>
+        {name}
+    </Title>
+    <PokemonCard {name} {url} isBig/>
+    <audio controls class="mx-auto">
+        <source src={audioSource} type="audio/ogg"/>
+        Your bowser does not support the audio element.
+    </audio>
+</MainLayout> 
