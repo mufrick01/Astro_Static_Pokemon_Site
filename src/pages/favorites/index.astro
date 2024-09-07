@@ -1,11 +1,7 @@
 ---
+import { FavoritesPokemons } from '@components/pokemons/FavoritesPokemons';
 import Title from '@components/shared/Title.astro';
 import MainLayout from '@layout/MainLayout.astro';
-
-interface Props {
-    propName: any;
-}
-const { propName } = Astro.props;
 ---
 
 
@@ -13,4 +9,5 @@ const { propName } = Astro.props;
 <Title>
     Pokemons favoritos
 </Title>
+<FavoritesPokemons client:only="solid-js"/>
 </MainLayout>

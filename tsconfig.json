@@ -3,9 +3,17 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@components/*":["./src/components/*"],
-      "@interfaces/*":["./src/interfaces/*"],
-      "@layout/*":["./src/layouts/*"],
-    }
+      "@components/*": [
+        "./src/components/*"
+      ],
+      "@interfaces/*": [
+        "./src/interfaces/*"
+      ],
+      "@layout/*": [
+        "./src/layouts/*"
+      ]
+    },
+    "jsx": "preserve",
+    "jsxImportSource": "solid-js"
   }
 }

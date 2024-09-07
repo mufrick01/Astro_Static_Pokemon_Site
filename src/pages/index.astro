@@ -7,7 +7,7 @@ import MainLayout from "@layout/MainLayout.astro";
 
 const title = "Static Pokedex | Home";
 
-const resp = await fetch("https://pokeapi.co/api/v2/pokemon?limit=15");
+const resp = await fetch("https://pokeapi.co/api/v2/pokemon?limit=151");
 const data = (await resp.json()) as PokemonListResponse;
 ---
 
